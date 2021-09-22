@@ -1,4 +1,5 @@
-package xyz.ramonasuncion;
+// This test was not created by me.
+package com.ramonasuncion;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
