@@ -25,12 +25,14 @@ public class Syllables {
         // Has more than one argument.
         if (args.length > 0) {
             for (String arg : args) {
+                System.out.println(arg);
                 if (arg.equals("-d")) {
-                    checkDict = checkIfWordIsInDictionary(word);
+                    checkDict = wordInDictionary(word);
                 }
             }
         }
-        
+
+        // Debugging variables.
         System.out.println("Word: " + word);
         System.out.println("Syllable count: " + syllableCount);
         System.out.println("Is the word in the dict: " + checkDict);
@@ -40,7 +42,8 @@ public class Syllables {
         int syllableCount = 0;
         String lowercaseWord = word.toLowerCase();
 
-        if (wordIsEmpty(word)) {
+        // Checks if there is no words being based in.
+        if (wordEmpty(word)) {
             return 0;
         }
 
@@ -143,12 +146,12 @@ public class Syllables {
     }
 
     // Function to check if the word that is being passed into the program is a null or empty.
-    private static boolean wordIsEmpty(String word) {
+    private static boolean wordEmpty(String word) {
         return word == null || word.length() == 0;
     }
 
     // Loads up the dictionary txt file into memory and checks if the file contains the word the user passes through
-    public static boolean checkIfWordIsInDictionary(String word) {
+    public static boolean wordInDictionary(String word) {
         String noCaseMatter = word.toLowerCase();
         String currentLine;
 
