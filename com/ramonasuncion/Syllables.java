@@ -1,7 +1,5 @@
 package com.ramonasuncion;
 
-// TODO: A GUI with JavaFX.
-// TODO: Make multiple catch exceptions for FileReading
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -10,14 +8,16 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// TODO: A GUI with JavaFX.
+// TODO: Make multiple catch exceptions for FileReading
 // TODO: Eventually I can make a regex that finds all the matches I need to compile once.
 // TODO: Remove the special characters from the string.
 // TODO: Only one word is allowed to be used with the parameter -d
 
 public class Syllables {
     public static void main( String[] args ) {
-        String word = null;
-        boolean checkDict = false;
+        String word;
+        boolean checkDict;
         int syllableCount = 0;
         int totalCharacters = 0;
         int totalWords = 0;
@@ -30,12 +30,10 @@ public class Syllables {
 
         // Has one argument and gets the syllable count for the words.
         word = args[0];
-        System.out.println(word);
-
-        syllableCount = getSyllableCount(word);
 
         // Check if the word is in the dictionary if the user uses -d.
         for (String arg : args) {
+            System.out.println(arg);
             if (arg.equals("-d")) {
                 checkDict = wordInDictionary(word);
                 System.out.println("Is word in dictionary? " + checkDict);
@@ -81,8 +79,8 @@ public class Syllables {
 
         // TODO: I can make triphthongs into a regex pattern.
         try {
-            BufferedReader triphthongsFile = new BufferedReader(new FileReader("triphthongs.txt"));
             String contentsFromTriphthongsFile;
+            BufferedReader triphthongsFile = new BufferedReader(new FileReader("triphthongs.txt"));
             while ((contentsFromTriphthongsFile = triphthongsFile.readLine()) != null) {
 
                 // TODO: Change the variable name since already using it below.
@@ -97,8 +95,8 @@ public class Syllables {
         }
 
         try {
-            BufferedReader diphthongsFile = new BufferedReader(new FileReader("diphthongs.txt"));
             String contentsFromDiphthongsFile;
+            BufferedReader diphthongsFile = new BufferedReader(new FileReader("diphthongs.txt"));
             while ((contentsFromDiphthongsFile = diphthongsFile.readLine()) != null) {
                 Pattern diphthongsPattern = Pattern.compile(contentsFromDiphthongsFile);
                 Matcher diphthongsMatch = diphthongsPattern.matcher(lowercaseWord);
@@ -156,16 +154,21 @@ public class Syllables {
         return (syllableCount);
     }
 
+    public static String[] removeSpecialCharacters( String word ) {
+        String newWord = word.replaceAll("[^a-zA-Z0-9]", " ");
+        String[] strArray;
+        strArray = newWord.split(" ");
+        return strArray;
+    }
+
     // Function to check if the word that is being passed into the program is a null or empty.
     private static boolean wordEmpty( String word ) {
         return word == null || word.length() == 0;
     }
 
     // Loads up the dictionary txt file into memory and checks if the file contains the word the user passes through
-    public static boolean wordInDictionary ( String word ) {
-        String noCaseMatter = word.toLowerCase();
+    private static boolean wordInDictionary( String word ) {
         String currentLine;
-
         ArrayList<String> captureDictionary = new ArrayList<>();
 
         try {
@@ -173,11 +176,12 @@ public class Syllables {
             while ((currentLine = fileReader.readLine()) != null) {
                 captureDictionary.add(currentLine);
             }
-        } catch (Exception e) {
-            System.out.println("The english.txt file is missing!");
+        }
+        catch (IOException ex) {
+            System.out.println("Could not read the english.txt file.");
             System.exit(0);
         }
 
-        return captureDictionary.contains(noCaseMatter);
+        return captureDictionary.contains(word.toLowerCase());
     }
 }
