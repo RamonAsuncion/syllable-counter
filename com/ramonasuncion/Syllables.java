@@ -1,9 +1,8 @@
 package com.ramonasuncion;
 
-import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileReader;
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,9 +12,10 @@ import java.util.regex.Pattern;
 // TODO: Eventually I can make a regex that finds all the matches I need to compile once.
 // TODO: Remove the special characters from the string.
 // TODO: Only one word is allowed to be used with the parameter -d
+// TODO: Use args as a  string to make a switch statement
 
 public class Syllables {
-    public static void main( String[] args ) {
+    public static void main(String[] args) {
         String word;
         boolean checkDict;
         int syllableCount = 0;
@@ -23,7 +23,7 @@ public class Syllables {
         int totalWords = 0;
 
         // Check if there are NO arguments being passed in.
-        if (args.length == 0){
+        if (args.length == 0) {
             System.out.println("usage: Syllables <English word>");
             System.exit(0);
         }
@@ -47,7 +47,7 @@ public class Syllables {
         System.out.println("Total characters: " + totalCharacters);
     }
 
-    public static int getSyllableCount( String word ) {
+    public static int getSyllableCount(String word) {
         // Checks if there is no words being based in.
         if (wordEmpty(word)) {
             return 0;
@@ -154,20 +154,18 @@ public class Syllables {
         return (syllableCount);
     }
 
-    public static String[] removeSpecialCharacters( String word ) {
+    public static String[] removeSpecialCharacters(String word) {
         String newWord = word.replaceAll("[^a-zA-Z0-9]", " ");
-        String[] strArray;
-        strArray = newWord.split(" ");
-        return strArray;
+        return newWord.split(" ");
     }
 
     // Function to check if the word that is being passed into the program is a null or empty.
-    private static boolean wordEmpty( String word ) {
+    private static boolean wordEmpty(String word) {
         return word == null || word.length() == 0;
     }
 
     // Loads up the dictionary txt file into memory and checks if the file contains the word the user passes through
-    private static boolean wordInDictionary( String word ) {
+    private static boolean wordInDictionary(String word) {
         String currentLine;
         ArrayList<String> captureDictionary = new ArrayList<>();
 
@@ -176,8 +174,7 @@ public class Syllables {
             while ((currentLine = fileReader.readLine()) != null) {
                 captureDictionary.add(currentLine);
             }
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             System.out.println("Could not read the english.txt file.");
             System.exit(0);
         }
