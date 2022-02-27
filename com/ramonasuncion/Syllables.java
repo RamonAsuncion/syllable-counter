@@ -7,18 +7,38 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-// TODO: A GUI with JavaFX.
-// TODO: Make multiple catch exceptions for FileReading
-// TODO: Eventually I can make a regex that finds all the matches I need to compile once.
-// TODO: Remove the special characters from the string.
-// TODO: Only one word is allowed to be used with the parameter -d
-// TODO: Use args as a  string to make a switch statement
-
+/**
+ * Main Program
+ */
 public class Syllables {
-    public static void main(String[] args) {
+
+    /** Syllable count number */
+    private final int syllableCount;
+
+    /** Characters count number */
+    private final int totalCharacters;
+
+    public Syllables() {
+        this.syllableCount = 0;
+        this.totalCharacters = 0;
+    }
+
+    /**
+     * @return the number of syllables.
+     */
+    public int getSyllableCount() { return syllableCount; }
+
+    /**
+     * @return the number of characters.
+     */
+    public int getTotalCharacters() { return totalCharacters; }
+
+
+    public void main(String[] args) {
+        Syllables syllable = new Syllables();
+
         String word;
         boolean checkDict;
-        int syllableCount = 0;
         int totalCharacters = 0;
         int totalWords = 0;
 
@@ -41,13 +61,31 @@ public class Syllables {
         }
 
         // Debugging variables.
+        printResults(word, syllable.getSyllableCount(), syllable.getTotalCharacters(), totalWords);
+    }
+
+    /**
+     * Print result to console.
+     *
+     * @param word the sentence
+     * @param syllableCount the number of syllables
+     * @param totalCharacters the number of characters
+     * @param totalWords the number of words in a sentence
+     */
+    private static void printResults(String word, int syllableCount, int totalCharacters, int totalWords) {
         System.out.println("Syllable count: " + syllableCount);
         System.out.println("Word: " + word);
         System.out.println("Word count: " + totalWords);
         System.out.println("Total characters: " + totalCharacters);
     }
 
-    public static int getSyllableCount(String word) {
+    /**
+     * Get the syllable count from the sentence.
+     *
+     * @param word
+     * @return
+     */
+    public static int syllableCount(String word) {
         // Checks if there is no words being based in.
         if (wordEmpty(word)) {
             return 0;
@@ -76,6 +114,8 @@ public class Syllables {
         while (matchRegexForY.find()) {
             syllableCount++;
         }
+
+
 
         // TODO: I can make triphthongs into a regex pattern.
         try {
@@ -154,23 +194,41 @@ public class Syllables {
         return (syllableCount);
     }
 
-    public static String[] removeSpecialCharacters(String word) {
-        String newWord = word.replaceAll("[^a-zA-Z0-9]", " ");
-        return newWord.split(" ");
+
+    /**
+     * Remove the special characters in a sentence.
+     *
+     * @param word
+     * @return a list of the words.
+     */
+    private static String[] removeSpecialCharacters(String word) {
+        return word.replaceAll("[^a-zA-Z0-9]", " ").split(" ");
     }
 
-    // Function to check if the word that is being passed into the program is a null or empty.
+
+    /**
+     *  Check if the user is passing in an empty word.
+     *
+     * @param word that
+     * @return a boolean if the word is empty or not.
+     */
     private static boolean wordEmpty(String word) {
         return word == null || word.length() == 0;
     }
 
-    // Loads up the dictionary txt file into memory and checks if the file contains the word the user passes through
+    /**
+     * Loads up the dictionary txt file into memory and checks if the file contains the word.
+     *
+     * @param word
+     * @return a boolean if the word is in the dictionary file.
+     */
     private static boolean wordInDictionary(String word) {
         String currentLine;
         ArrayList<String> captureDictionary = new ArrayList<>();
+        BufferedReader fileReader;
 
         try {
-            BufferedReader fileReader = new BufferedReader(new FileReader("english.txt"));
+            fileReader = new BufferedReader(new FileReader("english.txt"));
             while ((currentLine = fileReader.readLine()) != null) {
                 captureDictionary.add(currentLine);
             }
