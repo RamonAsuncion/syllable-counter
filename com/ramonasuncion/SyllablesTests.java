@@ -13,49 +13,49 @@ class SyllablesTest {
 
     @Test
     void nullWordTest() {
-        int n = Syllables.getSyllableCount(null);
+        int n = Syllables.syllableCount(null);
         assertEquals(0, n);
     }
 
     @Test
     void emptyWordTest() {
-        int n = Syllables.getSyllableCount("");
+        int n = Syllables.syllableCount("");
         assertEquals(0, n);
     }
 
     @Test
     void displaySyllablesForTestWordsTest() {
         for (String word : TEST_WORDS) {
-            System.out.printf("%-12s => %2d %n", word, Syllables.getSyllableCount(word));
+            System.out.printf("%-12s => %2d %n", word, Syllables.syllableCount(word));
         }
     }
 
     @Test
     void allWordsTest() {
-        assertEquals(1, Syllables.getSyllableCount("cake"));
-        assertEquals(1, Syllables.getSyllableCount("pie"));
-        assertEquals(1, Syllables.getSyllableCount("one"));
-        assertEquals(2, Syllables.getSyllableCount("apple"));
-        assertEquals(3, Syllables.getSyllableCount("banana"));
-        assertEquals(2, Syllables.getSyllableCount("cookie"));
-        assertEquals(2, Syllables.getSyllableCount("doughnut"));
-        assertEquals(2, Syllables.getSyllableCount("eggplant"));
-        assertEquals(2, Syllables.getSyllableCount("brownie"));
-        assertEquals(1, Syllables.getSyllableCount("red"));
-        assertEquals(2, Syllables.getSyllableCount("yellow"));
-        assertEquals(1, Syllables.getSyllableCount("blue"));
-        assertEquals(1, Syllables.getSyllableCount("green"));
-        assertEquals(2, Syllables.getSyllableCount("purple"));
-        assertEquals(2, Syllables.getSyllableCount("orange"));
-        assertEquals(2, Syllables.getSyllableCount("violet"));
-        assertEquals(2, Syllables.getSyllableCount("cyan"));
-        assertEquals(3, Syllables.getSyllableCount("magenta"));
-        assertEquals(4, Syllables.getSyllableCount("alligator"));
-        assertEquals(4, Syllables.getSyllableCount("independence"));
-        assertEquals(4, Syllables.getSyllableCount("ordinary"));
-        assertEquals(5, Syllables.getSyllableCount("intimidating"));
-        assertEquals(5, Syllables.getSyllableCount("generosity"));
-        assertEquals(2, Syllables.getSyllableCount("ion"));
-        assertEquals(2, Syllables.getSyllableCount("onion"));
+        assertEquals(1, Syllables.syllableCount("cake"));
+        assertEquals(1, Syllables.syllableCount("pie"));
+        assertEquals(1, Syllables.syllableCount("one"));
+        assertEquals(2, Syllables.syllableCount("apple"));
+        assertEquals(3, Syllables.syllableCount("banana"));
+        assertEquals(2, Syllables.syllableCount("cookie"));
+        assertEquals(2, Syllables.syllableCount("doughnut"));
+        assertEquals(2, Syllables.syllableCount("eggplant"));
+        assertEquals(2, Syllables.syllableCount("brownie"));
+        assertEquals(1, Syllables.syllableCount("red"));
+        assertEquals(2, Syllables.syllableCount("yellow"));
+        assertEquals(1, Syllables.syllableCount("blue"));
+        assertEquals(1, Syllables.syllableCount("green"));
+        assertEquals(2, Syllables.syllableCount("purple"));
+        assertEquals(2, Syllables.syllableCount("orange"));
+        assertEquals(2, Syllables.syllableCount("violet"));
+        assertEquals(2, Syllables.syllableCount("cyan"));
+        assertEquals(3, Syllables.syllableCount("magenta"));
+        assertEquals(4, Syllables.syllableCount("alligator"));
+        assertEquals(4, Syllables.syllableCount("independence"));
+        assertEquals(4, Syllables.syllableCount("ordinary"));
+        assertEquals(5, Syllables.syllableCount("intimidating"));
+        assertEquals(5, Syllables.syllableCount("generosity"));
+        assertEquals(2, Syllables.syllableCount("ion"));
+        assertEquals(2, Syllables.syllableCount("onion"));
     }
 }
