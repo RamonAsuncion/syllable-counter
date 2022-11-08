@@ -15,18 +15,20 @@ This project will not be worked on anymore and this is the final product.
 usage: Syllables <English word>
 ```
 
-
 Find the script's directory, mine was located in: Desktop\syllables-RamonAsuncion and run the script.
 ![GIF](http://g.recordit.co/0hEmXNujRK.gif)
 
-## Example 
-##### Terminal
+## Terminal
 ```
-$ java xyz/ramonasuncion/Syllables ok -d
+$ java com/ramonasuncion/Syllables ok -d
 'ok' has 1 syllable
 ```
 
-## Errors in code
-
-When inputting more than one word into the syllable counter it dosen't add 1 to 
-words like "the" that have 0 syllables. Also, the les and le have to worked on. 
+## Algorithm 
+* Count the number of vowels (*a*, *e*, *i*, *o*, *u*) in the word.
+* Add 1 every time the letter *y* makes the sound of a vowel. This is when *y* is not the first letter in the word.
+* Subtract 1 for each silent *e* at the end of a word.
+* Subtract 1 for each diphthong or triphthong in the word (see below).
+* Does the word end with *le* or *les?* If so, add 1 only if the letter *before* the *le* is a consonant
+* If the word starts with *io*, add 1 to the syllable count.
+* If the word ends with *ee* or *ie*, add 1 to the syllable count.

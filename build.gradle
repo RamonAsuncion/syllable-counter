@@ -1,0 +1,24 @@
+plugins {
+    id 'application'
+}
+
+group 'com.ramonasuncion'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClass = 'com.ramonasuncion.Syllables'
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
